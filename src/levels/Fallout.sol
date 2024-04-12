@@ -3,6 +3,10 @@ pragma solidity ^0.6.0;
 
 import "openzeppelin-contracts-06/math/SafeMath.sol";
 
+// Claim ownership of the contract below to complete this level.
+//
+// Things that might help
+//  - Solidity Remix IDE
 contract Fallout {
     using SafeMath for uint256;
 

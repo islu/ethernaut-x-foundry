@@ -4,10 +4,11 @@ pragma solidity ^0.6.0;
 import {EthernautTest} from "./utils/EthernautTest-06.sol";
 import {FalloutFactory} from "../src/factories/FalloutFactory.sol";
 import {Fallout} from "../src/levels/Fallout.sol";
+import "forge-std/console.sol";
 
 contract FalloutTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
+        super.setUp();
         FalloutFactory factory = new FalloutFactory();
         ethernaut.registerLevel(factory);
         levelAddress = ethernaut.createLevelInstance(factory);
@@ -16,8 +17,10 @@ contract FalloutTest is EthernautTest {
     function testSolveFallout() public {
         Fallout instance = Fallout(payable(levelAddress));
 
-	// insert your code here!
-	
+        // insert your code here!
+
+        instance.Fal1out();
+
         assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }
