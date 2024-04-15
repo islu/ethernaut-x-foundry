@@ -1,6 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
+// The goal of this level is for you to hack the basic token contract below.
+//
+// You are given 20 tokens to start with and you will beat the level if you somehow manage to get your hands on any additional tokens.
+// Preferably a very large amount of tokens.
+//
+// Things that might help:
+//  - What is an odometer?
 contract Token {
     mapping(address => uint256) balances;
     uint256 public totalSupply;
@@ -10,6 +17,7 @@ contract Token {
     }
 
     function transfer(address _to, uint256 _value) public returns (bool) {
+        // Vulnerability: Since value is an unsigned integer, which means it can only be non-negative, an underflow can occur.
         require(balances[msg.sender] - _value >= 0);
         balances[msg.sender] -= _value;
         balances[_to] += _value;
