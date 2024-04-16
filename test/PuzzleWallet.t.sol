@@ -7,17 +7,19 @@ import {PuzzleProxy} from "../src/levels/PuzzleWallet.sol";
 
 contract PuzzleWalletTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
+        super.setUp();
         PuzzleWalletFactory factory = new PuzzleWalletFactory();
         ethernaut.registerLevel(factory);
-        levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(factory);
+        levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(
+            factory
+        );
     }
 
-    function testSolveVault() public {
+    function testSolvePuzzleProxy() public {
         PuzzleProxy instance = PuzzleProxy(payable(levelAddress));
 
-	// insert your code here!
-	
+        // insert your code here!
+
         assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

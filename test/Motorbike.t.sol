@@ -7,17 +7,19 @@ import {Motorbike} from "../src/levels/Motorbike.sol";
 
 contract MotorbikeTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
+        super.setUp();
         MotorbikeFactory factory = new MotorbikeFactory();
         ethernaut.registerLevel(factory);
-        levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(factory);
+        levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(
+            factory
+        );
     }
 
-    function testSolveVault() public {
+    function testSolveMotorbike() public {
         Motorbike instance = Motorbike(payable(levelAddress));
 
-	// insert your code here!
-	
+        // insert your code here!
+
         assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }
