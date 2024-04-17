@@ -3,6 +3,14 @@ pragma solidity ^0.6.12;
 
 import "openzeppelin-contracts-06/math/SafeMath.sol";
 
+// The goal of this level is for you to steal all the funds from the contract.
+//
+// Things that might help:
+//  - Untrusted contracts can execute code where you least expect it.
+//  - Fallback methods
+//  - Throw/revert bubbling
+//  - Sometimes the best way to attack a contract is with another contract.
+//  - See the "?" page above, section "Beyond the console"
 contract Reentrance {
     using SafeMath for uint256;
 
