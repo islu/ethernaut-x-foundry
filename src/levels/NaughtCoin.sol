@@ -3,6 +3,14 @@ pragma solidity ^0.8.0;
 
 import "openzeppelin-contracts-08/token/ERC20/ERC20.sol";
 
+// NaughtCoin is an ERC20 token and you're already holding all of them. The catch is that you'll only be able to transfer them after a 10 year lockout period.
+// Can you figure out how to get them out to another address so that you can transfer them freely? Complete this level by getting your token balance to 0.
+//
+// Things that might help
+//  - The ERC20 Spec
+//      - https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
+//  - The OpenZeppelin codebase
+//      - https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts
 contract NaughtCoin is ERC20 {
     // string public constant name = 'NaughtCoin';
     // string public constant symbol = '0x0';
